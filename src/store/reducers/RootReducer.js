@@ -4,7 +4,7 @@ import UserProfileReducer  from '../reducers/User/ProfileReducer'
 
 const RootReducer = combineReducers({
   userAuth:UserAuthReducer,
-  userProfile: UserProfileReducer
+  userProfile: UserProfileReducer,
 })
 
 export default RootReducer

@@ -1,9 +1,13 @@
 import React , {useEffect}  from 'react'
+import {useState} from 'react'
 import {Card} from '@material-ui/core'
 import {useDispatch,useSelector} from 'react-redux'
 import {loadUserAction} from '../../store/actions/User/ProfileActions'
 import {useStyles} from '../../styles'
 import Skeleton from '@material-ui/lab/Skeleton';
+import ContactDeck from './ContactDeck'
+import ConnectionDeck from './ConnectionDeck'
+import HttpService from '../../services/HttpService'
 
 export default function ProfileView() {
 
@@ -14,8 +18,6 @@ export default function ProfileView() {
     useEffect(() => {
         dispatch(loadUserAction());
     }, [dispatch])
-
- 
 
 
     return (
@@ -37,6 +39,10 @@ export default function ProfileView() {
 
                 }
             </Card>
+            <br></br>
+            <ContactDeck userProf = {userProfile} />
+            <br></br>
+            <ConnectionDeck userProf = {userProfile}/>
             </div>
         </>
     )
