@@ -6,7 +6,7 @@ import {LoginUser,SignUpService,LogoutUser} from '../../../../services/User/Auth
 
 
 export const signUpAction = (credentials) =>{
-    console.log(credentials);
+    // console.log(credentials);
     return (dispatch)=>{
         
         dispatch({type:'RESTART_AUTH_RESPONSE'});
@@ -41,9 +41,9 @@ export const UserLoginAction = (credentials,props) =>
     dispatch({type:'RESTART_AUTH_RESPONSE'});
     dispatch({type:'LOADING'});
      LoginUser(credentials).then((res)=>{
-         console.log(res.token);
+        //  console.log(res.token);
         if(res.success==true && res.hasOwnProperty('token')){
-            console.log('ready to login user with '+res.token)
+            // console.log('ready to login user with '+res.token)
             localStorage.setItem('user-token','Bearer '+res.token);
             dispatch({type:'LOGIN_SUCCESS'});
             setTimeout(() => {

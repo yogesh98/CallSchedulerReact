@@ -35,7 +35,7 @@ function ContactDeck(props){
 
     getAllUsers()
 
-    let contacts = contactList.users.map(item => <ContactCard key = {item.id} user={item} thisUser = {props.userProf} />)
+    let contacts = contactList.users.map(item => <ContactCard key = {item.id} user={item} thisUser = {props.userProf} updateConnections = {props.updateConnections}/>)
 
     return (
         <div>

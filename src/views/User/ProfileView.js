@@ -19,6 +19,36 @@ export default function ProfileView() {
         dispatch(loadUserAction());
     }, [dispatch])
 
+    const [connectionsListParent, updateConnectionsListParent] = useState(
+        {
+            connections:[],
+            success: false
+        }
+    )
+
+    function getAllConnections(){
+        if (userProfile.success === true && connectionsListParent.success === false){
+            const http = new HttpService();
+            let get_connections_url = "user/get-connected-users"
+            const tokenId = "user-token"
+            let body = { email: userProfile.user.email }
+    
+            return http.postData(body ,get_connections_url,tokenId).then(data=>{
+                console.log(JSON.stringify(data));
+                updateConnectionsListParent(
+                    {
+                        connections: data.result,
+                        success: true
+                    }
+                )
+                return data;
+            }).catch((error)=> {
+                console.log(error)
+                return error; 
+                });
+        }
+    }
+
 
     return (
         <>
@@ -40,9 +70,11 @@ export default function ProfileView() {
                 }
             </Card>
             <br></br>
-            <ContactDeck userProf = {userProfile} />
+            <h1>Contacts:</h1>
+            <ContactDeck userProf = {userProfile} updateConnections = {updateConnectionsListParent}/>
             <br></br>
-            <ConnectionDeck userProf = {userProfile}/>
+            <h1>Connections:</h1>
+            <ConnectionDeck userProf = {userProfile} connectionsList = {connectionsListParent} updateConnections = {getAllConnections} updateConnectionList = {updateConnectionsListParent}/>
             </div>
         </>
     )

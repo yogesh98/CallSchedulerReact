@@ -21,11 +21,16 @@ function ContactCard(props){
 
         http.postData(postInfo, create_connections_url,tokenId).then(data=>{
             console.log(JSON.stringify(data));
+            props.updateConnections(
+                {
+                    connections: data.result,
+                    success: true
+                }
+            );
         }).catch((error)=> {
             console.log(error)
             return error; 
             });
-        // props.updateConnections()
     }
     return (
         <div>
@@ -33,7 +38,7 @@ function ContactCard(props){
         <Card>
             <div className='rowC'>
                 {props.user.name}
-                {props.user.email}
+                <br></br>
                 <button onClick = {HandleConnection}>Connect</button>
             </div>
         </Card>

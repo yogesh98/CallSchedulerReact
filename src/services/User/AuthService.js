@@ -19,7 +19,7 @@ export const LoginUser = (credentials) =>{
     const http = new HttpService();
     let signUpUrl = "user/login";
     return http.postData(credentials,signUpUrl).then(data=>{
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         return data;
     }).catch((error)=> {
         console.log(error)
